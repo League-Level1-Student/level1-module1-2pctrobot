@@ -17,24 +17,33 @@ import javax.swing.JPanel;
 
 
 public class RaceCarRunner implements ActionListener{
-	static JButton button = new JButton();
-	static JButton button2 = new JButton();
-	static JButton button3 = new JButton();
+
 	static JFrame frame = new JFrame();
 	static JPanel panel = new JPanel();
 	static String brand = JOptionPane.showInputDialog("What is your car's brand?");
 	static RaceCar car = new RaceCar(brand,5);
 	public static void main(String[] args) {
 		/* Do the following things without changing the RaceCar class */
-		
+	RaceCarRunner race = new RaceCarRunner();	
 		// 1. Create a RaceCar and place it in 5th position
 	
 	
 		// 2. Print the RaceCar's position in the race
 	System.out.println("You are number " + car.getPositionInRace() + " in the race.");
 		// 3. Crash the RaceCar
+	race.setup();
 	
 	
+    
+		// 4. If the car is damaged. Bring it in for a pit stop.
+
+		// 5. Help the car move into first place.
+
+	}
+	JButton button = new JButton();
+	JButton button2 = new JButton();
+	JButton button3 = new JButton();	
+	void setup() {
 	frame.setVisible(true);
 	panel.setVisible(true);
 	frame.add(panel);
@@ -45,16 +54,10 @@ public class RaceCarRunner implements ActionListener{
     panel.add(button3);
     button3.setText("Pitstop");
     frame.pack();
-    button.addActionListener(null);
-    button2.addActionListener(null);
-    button3.addActionListener(null);
-    
-		// 4. If the car is damaged. Bring it in for a pit stop.
-
-		// 5. Help the car move into first place.
-
-	}
-
+    button.addActionListener(this);
+    button2.addActionListener(this);
+    button3.addActionListener(this);}
+	
 	@Override
 	public void actionPerformed(ActionEvent arg0) {
 		JButton buttonPressed = (JButton) arg0.getSource();

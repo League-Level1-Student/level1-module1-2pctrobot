@@ -38,7 +38,7 @@ public class Cat {
 	}
 
 	void kill() {
-		lives--;
+		lives-=9;
 		if (lives > 0)
 			System.out.println("nice try, but I still have " + lives + " lives left");
 		else if (lives < 0)
