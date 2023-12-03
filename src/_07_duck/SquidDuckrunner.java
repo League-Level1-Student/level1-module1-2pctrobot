@@ -44,6 +44,11 @@ public class SquidDuckrunner implements ActionListener {
 	    sbutton3.addActionListener(this);
    }
 	public static void main(String[] args) {
+		SquidDuckrunner squidDuckRunner = new SquidDuckrunner();
+		squidDuckRunner.setup();
+	}
+	private void setup() {
+		showButton();
 		
 	}
 	@Override
@@ -56,7 +61,7 @@ public class SquidDuckrunner implements ActionListener {
 		}else if(buttonPressed.equals(dbutton3)) {
 			daffy.quack();
 		}else if(buttonPressed.equals(sbutton1)) {
-			calimarie.favDrink(null);
+			calimarie.favDrink("lemonade");
 		}else if(buttonPressed.equals(sbutton2)) {
 			calimarie.numOfFoes(23);
 		}else if(buttonPressed.equals(sbutton3)) {

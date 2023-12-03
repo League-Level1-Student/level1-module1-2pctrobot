@@ -9,7 +9,7 @@ public class Squid {
 	    this.numberOfFoes = numberOfFoes;
 	}
 	void favDrink(String favoriteDrink) {
-		System.out.println("My favorite food is " + favoriteDrink + ".");
+		System.out.println("My favorite drink is " + favoriteDrink + ".");
 	}
 	void numOfFoes(int numberOfFoes) {
 		System.out.println("I have " + numberOfFoes + " foes.");
