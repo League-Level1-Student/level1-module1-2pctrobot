@@ -66,7 +66,6 @@ public class SolarSystem implements GameControlScene {
     int sunX, sunY;
     Long startTimeMs = null;
     Game gameFrame = new Game("Solar System");
-    
     Planet mercury = new Planet(4, Color.GRAY, 579, 88);
     Planet venus = new Planet(12, Color.DARK_GRAY, 1082, 224);
     Planet earth = new Planet(12, Color.BLUE, 1496, 365);
@@ -77,6 +76,7 @@ public class SolarSystem implements GameControlScene {
     Planet neptune = new Planet(49, Color.PINK, 44951, 59800);
     
     public SolarSystem() {
+    	
         gameFrame.setScene(this);
         gameFrame.start();
         gameFrame.setSize(DISPLAY_WIDTH, DISPLAY_HEIGHT);

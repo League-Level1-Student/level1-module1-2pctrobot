@@ -52,7 +52,8 @@ public class Planet {
         int centerX = SolarSystem.CENTER_X + x;
         int centerY = SolarSystem.CENTER_Y + y;
         g.setColor(color);
-        g.fillOval(centerX - (diameter/2), centerY - (diameter/2), diameter, diameter);
+        System.out.println(Math.pow(Math.E,-numDays) + " numDays= " + numDays);
+        g.fillOval((int)(centerX -(diameter/2)+((double)diameter/2)*(1.0-(Math.pow(Math.E,numDays)))), (int)(centerY - (diameter/2)+((double)diameter/2)*(1.0-(Math.pow(Math.E,numDays)))), diameter/ (numDays/400), diameter/ (numDays/400));
         
         /*
          * Draw moons, if any
