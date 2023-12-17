@@ -52,21 +52,25 @@ public class Planet {
         int centerX = SolarSystem.CENTER_X + x;
         int centerY = SolarSystem.CENTER_Y + y;
         g.setColor(color);
-        System.out.println(Math.pow(Math.E,-numDays) + " numDays= " + numDays);
-        g.fillOval((int)(centerX -(diameter/2)+((double)diameter/2)*(1.0-(Math.pow(Math.E,numDays)))), (int)(centerY - (diameter/2)+((double)diameter/2)*(1.0-(Math.pow(Math.E,numDays)))), diameter/ (numDays/400), diameter/ (numDays/400));
+       double scalingDiameter = numDays/1500.0;
+       	if(scalingDiameter < 1)
+       		scalingDiameter = 1;
+       	double scalingOval = (diameter/2) - ((diameter/2)/scalingDiameter);
+        g.fillOval(centerX -(diameter/2)+(int)scalingOval, centerY - (diameter/2) + (int)scalingOval, (int)((double)diameter/scalingDiameter), (int)((double)diameter/scalingDiameter));
         
         /*
          * Draw moons, if any
          */
         for( int i = 0; i < moons.size(); i++ ) {
             Moon moon = moons.get(i);
-            
+            int moonDist = (int) (2 * moon.distPlanetToMoon / scalingDiameter);
+            double moonOval = (moon.distPlanetToMoon) - ((moon.distPlanetToMoon)/scalingDiameter);
             if( i == 0 ) {
-                g.drawOval(centerX - moon.distPlanetToMoon, centerY - moon.distPlanetToMoon,
-                           2*moon.distPlanetToMoon, 2*moon.distPlanetToMoon);
+                g.drawOval(centerX - moon.distPlanetToMoon+(int)moonOval, centerY - moon.distPlanetToMoon+(int)moonOval,
+                           moonDist, moonDist);
             }
 
-            moon.draw(g, numDays, centerX, centerY);
+            moon.draw(g, numDays, centerX, centerY, moonDist, moonOval);
         }
     }
     
@@ -90,14 +94,17 @@ public class Planet {
             this.daysOffset = rand.nextInt(365);
         }
         
-        public void draw(Graphics g, int days, int planetX, int planetY) {
+        public void draw(Graphics g, int days, int planetX, int planetY, double moonDist, double moonOval) {
             int numDays = daysOffset + days;
             double angle = 2 * Math.PI * numDays / moonDaysToOrbit;
-            int moonX = (int)(Math.cos(angle) * distPlanetToMoon);
-            int moonY = (int)(Math.sin(angle) * distPlanetToMoon);
-            
+            int moonX = (int)(Math.cos(angle) * moonDist/2);
+            int moonY = (int)(Math.sin(angle) * moonDist/2);
+            moonOval = moonOval/15.0;
+            System.out.println(moonOval + " " + moonDist);
+            if(moonOval < 1)
+           		moonOval = 1;
             g.setColor(moonColor);
-            g.fillOval(planetX - (moonDiameter/2) + moonX, planetY - (moonDiameter/2) + moonY, moonDiameter, moonDiameter);
+            g.fillOval(planetX - (moonDiameter/2) + moonX + (int)moonOval, planetY - (moonDiameter/2) + moonY + (int)moonOval, (int)((double)moonDiameter/moonOval), (int)((double)moonDiameter/moonOval));
         }
     }
 }

@@ -117,6 +117,7 @@ public class SolarSystem implements GameControlScene {
         /*
          * Space
          */
+    	int numDays = getDays();
         g.setColor(Color.BLACK);
         g.fillRect(0, 0, DISPLAY_WIDTH, DISPLAY_HEIGHT);
         
@@ -130,10 +131,11 @@ public class SolarSystem implements GameControlScene {
         /*
          * Sun
          */
+        int sunDiameter = numDays/1500;
+        if(sunDiameter < 1)
+       		sunDiameter = 1;
         g.setColor(Color.YELLOW);
-        g.fillOval(sunX, sunY, SUN_DIAMETER_PIXELS, SUN_DIAMETER_PIXELS);
-        
-        int numDays = getDays();
+        g.fillOval(sunX, sunY, SUN_DIAMETER_PIXELS/sunDiameter, SUN_DIAMETER_PIXELS/sunDiameter);
         
         /*
          * Add planets here
