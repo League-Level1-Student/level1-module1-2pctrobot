@@ -74,6 +74,7 @@ public class SolarSystem implements GameControlScene {
     Planet saturn = new Planet(120, Color.LIGHT_GRAY, 14335, 10747);
     Planet uranus = new Planet(51, Color.CYAN, 28725, 30589);
     Planet neptune = new Planet(49, Color.PINK, 44951, 59800);
+    Planet majora = new Planet(284, Color.RED, 179804, 70000);
     
     public SolarSystem() {
     	
@@ -131,11 +132,15 @@ public class SolarSystem implements GameControlScene {
         /*
          * Sun
          */
-        int sunDiameter = numDays/1500;
+        float sunDiameter = (float) (numDays/400.0);
         if(sunDiameter < 1)
        		sunDiameter = 1;
+        float sunSize = (float)SUN_DIAMETER_PIXELS/sunDiameter;
         g.setColor(Color.YELLOW);
-        g.fillOval(sunX, sunY, SUN_DIAMETER_PIXELS/sunDiameter, SUN_DIAMETER_PIXELS/sunDiameter);
+        double scalingOval = (SUN_DIAMETER_PIXELS/2) - sunSize/2;
+        //g.fillOval(centerX -(diameter/2)+(int)scalingOval, centerY - (diameter/2) + (int)scalingOval
+        //		, (int)((double)diameter/scalingDiameter), (int)((double)diameter/scalingDiameter));
+        g.fillOval(sunX + (int) (scalingOval), sunY + (int) (scalingOval), (int)sunSize, (int)sunSize);
         
         /*
          * Add planets here
@@ -148,6 +153,7 @@ public class SolarSystem implements GameControlScene {
         saturn.draw(g, numDays);
         uranus.draw(g, numDays);
         neptune.draw(g, numDays);
+        majora.draw(g, numDays);
     }
     
     @Override
