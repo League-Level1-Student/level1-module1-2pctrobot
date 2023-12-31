@@ -73,7 +73,10 @@ public class HungryHungryHippos implements GameScene, GameControlScene {
         gameFrame.setSize(GAME_WIDTH, GAME_HEIGHT);
         setup();
         
-        String instructions = "Press '1' to make the hippo eat\n";
+        String instructions = "Press '1' to make the red hippo eat\n";
+        instructions += "Press '2' to make the yellow hippo eat\n";
+        instructions += "Press '3' to make the green hippo eat\n";
+        instructions += "Press '4' to make the blue hippo eat\n";
         instructions += "Press 's' to start";
         JOptionPane.showMessageDialog(null, instructions);
     }
@@ -135,11 +138,11 @@ public class HungryHungryHippos implements GameScene, GameControlScene {
         } else if (keyCode == KeyEvent.VK_1) {
             myHippoObject.eat();
         } else if (keyCode == KeyEvent.VK_2) {
-            
+        	myHippoObject2.eat();
         } else if (keyCode == KeyEvent.VK_3) {
-            
+        	myHippoObject3.eat();
         } else if (keyCode == KeyEvent.VK_4) {
-            
+        	myHippoObject4.eat();
         }
     }
     
