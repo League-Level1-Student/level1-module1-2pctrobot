@@ -12,20 +12,26 @@ public class TurfWar extends PApplet {
          * as parameters and initializes them using the this keyword.
          */
         int x;
+        int lastx;
         int y;
+        int lasty;
         int speed;
         int playerSize;
         int playerColor;
+        int headColor;
         int upKey;
         int leftKey;
         int downKey;
         int rightKey;
-        public Player(int x,int y,int speed,int playerSize,int playerColor,int upKey,int leftKey,int downKey,int rightKey) {
+        public Player(int x,int y,int speed,int playerSize,int playerColor,int headColor,int upKey,int leftKey,int downKey,int rightKey) {
         	this.x = x;
         	this.y = y;
+        	this.lastx = x;
+        	this.lasty = y;
         	this.speed = speed;
         	this.playerSize = playerSize;
         	this.playerColor = playerColor;
+        	this.headColor = headColor;
         	this.upKey = upKey;
         	this.leftKey = leftKey;
         	this.downKey = downKey;
@@ -47,7 +53,9 @@ public class TurfWar extends PApplet {
              * 2. Draw a rectangle to represent the the Player using its color,
              * coordinates and size.
              */
-            fill(playerColor);
+        	fill(playerColor);
+        	rect(lastx,lasty, playerSize,playerSize);
+            fill(headColor);
             rect(x, y, playerSize, playerSize);
         }
 
@@ -59,21 +67,23 @@ public class TurfWar extends PApplet {
              * Note: statsBoardLine is used instead of 0 because that is 
              * where the area detailing game stats(timer, score, etc.) ends.
              * 
-             */     
+             */
+        	lastx = x;
+        	lasty = y;
             if (moveUp && y > statsBoardLine) {
                 y-=speed;
                 System.out.println("Moving up");
             }
-            if (moveDown && y < statsBoardLine) {
+            if (moveDown && y < 800-playerSize) {
                 y+=speed;
                 System.out.println("Moving down");
             }
-            if (moveRight && x > statsBoardLine) {
-                x-=speed;
+            if (moveRight && x < 800-playerSize) {
+                x+=speed;
                 System.out.println("Moving right");
             }
-            if (moveLeft && x < statsBoardLine) {
-                x+=speed;
+            if (moveLeft && x > 0) {
+                x-=speed;
                 System.out.println("Moving left");
             }
             
@@ -156,7 +166,7 @@ public class TurfWar extends PApplet {
     @Override
     public void settings() {
         // 5. Set the size for your sketch. Make it at least 300x300.
-    	size(1000, 1000);
+    	size(800, 800);
     }
 
     @Override
@@ -185,8 +195,8 @@ background(156, 156, 156);
          * not select black, white or the color you used for your background as it
          * will give that player an unfair advantage.
          */
-player1 = new Player(200,200,5,25,Color.BLUE.getRGB(),W,D,S,A);
-player2 = new Player(800,800,5,25,Color.ORANGE.getRGB(),UP,RIGHT,DOWN,LEFT);        
+player1 = new Player(200,200,5,25,Color.BLUE.getRGB(),Color.CYAN.getRGB(),W,A,S,D);
+player2 = new Player(600,600,5,25,Color.ORANGE.getRGB(),Color.YELLOW.getRGB(),UP,LEFT,DOWN,RIGHT);        
     }
 
     /*
@@ -255,6 +265,7 @@ player2 = new Player(800,800,5,25,Color.ORANGE.getRGB(),UP,RIGHT,DOWN,LEFT);
     @Override
     public void draw() {
         // 10. Call the drawPlayer method for both players.
+    	
         player1.drawPlayer();
         player2.drawPlayer();
         // 11. Call the update method for both players.
