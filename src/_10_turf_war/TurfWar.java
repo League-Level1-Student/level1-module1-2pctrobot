@@ -219,13 +219,15 @@ player2 = new Player(600,600,5,25,Color.ORANGE.getRGB(),Color.YELLOW.getRGB(),UP
         
         
         if (player1Percentage == player2Percentage) {
+        	fill(Color.WHITE.getRGB());
             winMessage = "TIE";
 
         } else if (player1Percentage > player2Percentage) {
-            
+        	fill(Color.BLUE.getRGB());
             winMessage = "PLAYER 1 WINS!";
             
         } else {
+        	fill(Color.ORANGE.getRGB());
             winMessage = "PLAYER 2 WINS!";
         }
         
@@ -248,10 +250,10 @@ player2 = new Player(600,600,5,25,Color.ORANGE.getRGB(),Color.YELLOW.getRGB(),UP
         loadPixels();
         player1.countPixels();
         player2.countPixels();
-        
+        fill(Color.BLUE.getRGB());
         String player1Display = "Player 1 Coverage: " + calculateRoundedPixelPercentage(player1.pixelCount) + "%";
         text(player1Display, (width/2 - (player1Display.length()*statsBoardSpacing) / 4)  , statsBoardSpacing*2);
-        
+        fill(Color.ORANGE.getRGB());
         String player2Display = "Player 2 Coverage: " + calculateRoundedPixelPercentage(player2.pixelCount) + "%";
         text(player2Display, (width/2 - (player2Display.length()*statsBoardSpacing) / 4)  , statsBoardSpacing*3);
     }
